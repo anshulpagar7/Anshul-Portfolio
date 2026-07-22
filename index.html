@@ -385,7 +385,7 @@ html.no-motion .rv{opacity:1}
         <button id="contactToggle">Contact me</button>
         <div class="contact-pop" id="contactPop">
           <a href="tel:+917249301114"><span class="ci">☎</span><span><b>Phone</b>+91 72493 01114</span></a>
-          <a href="mailto:anshulpagar@gmail.com"><span class="ci">✉</span><span><b>Email</b>anshulpagar@gmail.com</span></a>
+          <a class="js-mail" href="mailto:anshulpagar@gmail.com"><span class="ci">✉</span><span><b>Email</b>anshulpagar@gmail.com</span></a>
           <a href="https://linkedin.com/in/anshulpagar" target="_blank" rel="noopener"><span class="ci">in</span><span><b>LinkedIn</b>/in/anshulpagar</span></a>
           <a href="https://github.com/anshulpagar7" target="_blank" rel="noopener"><span class="ci">gh</span><span><b>GitHub</b>/anshulpagar7</span></a>
         </div>
@@ -468,7 +468,7 @@ html.no-motion .rv{opacity:1}
     <h2 class="split rv">Open a <span class="gold">channel</span></h2>
     <p class="rv">Recruiting, collaborating, or arguing about distributed systems — my inbox is always in orbit.</p>
     <div class="cta-row rv">
-      <a class="btn btn-gold magnet" href="mailto:anshulpagar@gmail.com?subject=Let%27s%20connect%2C%20Anshul&body=Hi%20Anshul%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20wanted%20to%20reach%20out.%0A%0A">Send a signal</a>
+      <a class="btn btn-gold magnet js-mail" href="mailto:anshulpagar@gmail.com?subject=Let%27s%20connect%2C%20Anshul&body=Hi%20Anshul%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20wanted%20to%20reach%20out.%0A%0A">Send a signal</a>
       <a class="btn btn-ghost magnet" href="https://github.com/anshulpagar7" target="_blank" rel="noopener">GitHub</a>
       <a class="btn btn-ghost magnet" href="https://linkedin.com/in/anshulpagar" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-ghost magnet js-resume" href="#">Resume</a>
@@ -1275,6 +1275,22 @@ console.log('%c🐟 You found the engine room. The koi approves.\n→ Press Ctrl
     if(e.key==='Escape')close(); if(e.key==='ArrowLeft')show(idx-1); if(e.key==='ArrowRight')show(idx+1); });
 
   window.siteModals = Object.assign(window.siteModals||{}, { gallery:()=>open(0) });
+})();
+
+
+/* ---------- email links: open Gmail compose pre-filled (desktop) ---------- */
+(() => {
+  const GMAIL = 'https://mail.google.com/mail/?view=cm&fs=1'
+    + '&to=anshulpagar%40gmail.com'
+    + '&su=' + encodeURIComponent("Let's connect, Anshul")
+    + '&body=' + encodeURIComponent("Hi Anshul,\n\nI came across your portfolio and wanted to reach out.\n\n");
+  document.querySelectorAll('.js-mail').forEach(a=>{
+    a.addEventListener('click', e=>{
+      if (isTouch) return;                 // phones: mailto opens the Gmail app directly
+      e.preventDefault();
+      window.open(GMAIL, '_blank', 'noopener');
+    });
+  });
 })();
 
 </script>
