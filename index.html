@@ -230,6 +230,8 @@ h2 .gold .ch{background:linear-gradient(100deg,var(--aurum) 20%,#FFEDC2 50%,var(
 .modal.open{display:flex}
 .modal-box{position:relative;width:min(880px,94vw);max-height:88vh;overflow-y:auto;border:1px solid rgba(255,200,92,.28);background:linear-gradient(160deg,rgba(11,14,26,.98),rgba(4,6,13,.98));padding:46px 44px;box-shadow:0 40px 120px rgba(0,0,0,.7)}
 .modal-box.wide{width:min(1000px,96vw);padding:26px}
+.modal-box.resume{width:auto;max-width:96vw;padding:22px 22px 16px}
+.modal-box.resume iframe{display:block;margin:0 auto;aspect-ratio:210/297;height:min(80vh,1100px);width:auto;max-width:calc(96vw - 44px);background:#fff;border:0}
 .modal-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border:1px solid var(--line);background:transparent;color:var(--dim);font-size:17px;cursor:pointer;transition:color .3s,border-color .3s;z-index:2}
 .modal-close:hover{color:var(--aurum);border-color:rgba(255,200,92,.4)}
 .modal .tag{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--aurum);font-weight:500}
@@ -346,7 +348,7 @@ html.no-motion .rv{opacity:1}
   <div class="modal-box" id="projModalBox"></div>
 </div>
 <div class="modal" id="resumeModal" role="dialog" aria-modal="true">
-  <div class="modal-box wide">
+  <div class="modal-box resume">
     <button class="modal-close" data-close>✕</button>
     <iframe src="" data-src="https://drive.google.com/file/d/14nr7sYu6DZY7FdAHXbv77-diMfiBvAoF/preview" title="Resume" loading="lazy"></iframe>
     <div class="iframe-note"><a href="https://drive.google.com/uc?export=download&id=1xugf_Vm1rgeGpvcb4dKGXvFJUJE_oCl_" style="color:var(--aurum)" target="_blank" rel="noopener">⤓ Download resume (PDF)</a></div>
@@ -1190,7 +1192,7 @@ console.log('%c🐟 You found the engine room. The koi approves.\n→ Press Ctrl
   const openModal = m => {
     m.classList.add('open'); lock(true);
     const fr = m.querySelector('iframe[data-src]');
-    if (fr && !fr.src) fr.src = fr.dataset.src;   // lazy-load drive embeds
+    if (fr && !fr.getAttribute('src')) fr.setAttribute('src', fr.dataset.src);   // lazy-load drive embeds
     if (!reduced) gsap.fromTo(m.querySelector('.modal-box'),
       {scale:.94, y:24, opacity:0}, {scale:1, y:0, opacity:1, duration:.5, ease:'expo.out'});
   };
