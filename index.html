@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anshul Pagar — Software Engineer</title>
+<meta name="description" content="Anshul Pagar — CS engineer building production software for the Government of Maharashtra, distributed systems, and AR. Explore my work, experience, and certifications.">
+<meta property="og:title" content="Anshul Pagar — Software Engineer">
+<meta property="og:description" content="Space-themed portfolio with a scroll-reactive celestial koi. Government platforms, distributed systems, AR & computer vision.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#020309">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -84,7 +90,7 @@ h2 .gold{background:linear-gradient(100deg,var(--aurum) 20%,#FFEDC2 50%,var(--au
 h2 .ch,.hero h1 .ch{display:inline-block;white-space:pre}
 
 /* hero */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:70px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:96px;padding-bottom:150px}
 .hero .over{font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:28px}
 .hero .over b{color:var(--aurum);font-weight:500}
 .hero h1{font-family:'Unbounded';font-weight:900;font-size:clamp(54px,11.5vw,156px);line-height:.96;letter-spacing:-.01em;margin-bottom:14px}
@@ -186,13 +192,12 @@ footer{position:relative;z-index:3;border-top:1px solid var(--line);padding:30px
 .ach h3{font-family:'Unbounded';font-weight:700;font-size:16px;margin-bottom:8px;line-height:1.35}
 .ach p{color:var(--dim);font-size:13.5px}
 .lead-strip{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
-.lead-chip{font-size:12px;letter-spacing:.08em;color:var(--dim);border:1px solid var(--line);padding:10px 18px;transition:color .3s,border-color .3s}
-.lead-chip b{color:var(--ink);font-weight:500}
-.lead-chip:hover{border-color:rgba(255,200,92,.3);color:var(--ice)}
 .drive-row{margin-top:36px;text-align:center}
 .cert a.certlink{color:inherit;text-decoration:none;display:block}
 .cert .view{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ice);margin-top:10px;opacity:0;transition:opacity .3s}
 .cert:hover .view{opacity:1}
+@media (max-width:1120px){.hero .fishnote{display:none}}
+@media (max-width:640px){.hero .hint{display:none}}
 @media (max-width:880px){.ach-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:540px){.ach-grid{grid-template-columns:1fr}}
 
@@ -339,17 +344,10 @@ html.no-motion .rv{opacity:1}
 <div class="modal" id="projModal" role="dialog" aria-modal="true">
   <div class="modal-box" id="projModalBox"></div>
 </div>
-<div class="modal" id="certModal" role="dialog" aria-modal="true">
-  <div class="modal-box wide">
-    <button class="modal-close" data-close>✕</button>
-    <iframe src="" data-src="https://drive.google.com/embeddedfolderview?id=17Eeampw_RDmRettT74JOPLxOYwTqts8A#grid" title="Certificates gallery" loading="lazy"></iframe>
-    <div class="iframe-note">Certificate gallery · click any certificate to view it full size</div>
-  </div>
-</div>
 <div class="modal" id="resumeModal" role="dialog" aria-modal="true">
   <div class="modal-box wide">
     <button class="modal-close" data-close>✕</button>
-    <iframe src="" data-src="https://drive.google.com/file/d/1xugf_Vm1rgeGpvcb4dKGXvFJUJE_oCl_/preview" title="Resume" loading="lazy"></iframe>
+    <iframe src="" data-src="https://drive.google.com/file/d/14nr7sYu6DZY7FdAHXbv77-diMfiBvAoF/preview" title="Resume" loading="lazy"></iframe>
     <div class="iframe-note"><a href="https://drive.google.com/uc?export=download&id=1xugf_Vm1rgeGpvcb4dKGXvFJUJE_oCl_" style="color:var(--aurum)" target="_blank" rel="noopener">⤓ Download resume (PDF)</a></div>
   </div>
 </div>
@@ -487,8 +485,6 @@ html.no-motion .rv{opacity:1}
    Add a new object to any list below and the site
    renders it automatically. No other code changes needed.
    ============================================================ */
-
-const DRIVE_ALL_CERTS = "https://drive.google.com/drive/folders/17Eeampw_RDmRettT74JOPLxOYwTqts8A?usp=sharing";
 
 const DRIVE_FOLDER = "https://drive.google.com/drive/folders/17Eeampw_RDmRettT74JOPLxOYwTqts8A?usp=sharing";
 
@@ -804,7 +800,7 @@ if (reduced) document.documentElement.classList.add('no-motion');
   };
   // click the void to drop food — koi swims over and eats it
   addEventListener('click', e => {
-    if (e.target.closest('a,button,nav,input,textarea,.proj,.cert,.ach,.stat,#palWrap,.modal,footer')) return;
+    if (e.target.closest('a,button,nav,input,textarea,.proj,.cert,.cframe,.ach,.stat,.lead-card,#palWrap,.modal,#lightbox,footer')) return;
     window.koiAPI.feed(e.clientX, e.clientY);
   });
 
@@ -943,7 +939,7 @@ if (reduced) document.documentElement.classList.add('no-motion');
   (function loop(){ rx+=(mx-rx)*.16; ry+=(my-ry)*.16;
     ring.style.transform=`translate(${rx-ring.offsetWidth/2}px,${ry-ring.offsetHeight/2}px)`;
     requestAnimationFrame(loop); })();
-  document.querySelectorAll('a,button,.proj,.cert').forEach(el=>{
+  document.querySelectorAll('a,button,.proj,.cert,.cframe,.lead-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>ring.classList.add('hovering'));
     el.addEventListener('mouseleave',()=>ring.classList.remove('hovering'));
   });
@@ -1229,16 +1225,12 @@ console.log('%c🐟 You found the engine room. The koi approves.\n→ Press Ctrl
     if (card && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); openProject(+card.dataset.i); }
   });
 
-  // certificate gallery
-  const cm = document.getElementById('certModal');
-  const openGallery = e => { if(e) e.preventDefault(); openModal(cm); };
-
   // resume viewer
   const rm = document.getElementById('resumeModal');
   document.querySelectorAll('.js-resume').forEach(b=>b.addEventListener('click', e=>{ e.preventDefault(); openModal(rm); }));
 
   // expose for command palette
-  window.siteModals = { resume:()=>openModal(rm), gallery:()=>openModal(cm) };
+  window.siteModals = { resume:()=>openModal(rm) };
 })();
 
 
